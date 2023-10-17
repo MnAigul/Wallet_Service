@@ -9,17 +9,19 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Класс, обрабатывающий вход админа и просмотр всех зарегистрированных логинов в сисеме, а также просмотр всех действий пользователя
+ * Класс, обрабатывающий просмотр всех зарегистрированных логинов в сисеме, а также просмотр всех действий пользователя
  * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
  * @version 1.0
  */
 @NoArgsConstructor
 public class AuditService {
 
+    /** Объект AuditDAO для работы с базой данных {@link AuditDAO}*/
     private AuditDAO auditDAO = new AuditDAO();
 
     /**
      * Функция, обрабатывающая запросы админа (получение всех зарегистрированных пользователей и аудит действий игрока)
+     * @param scanner для ввода данных
      */
     public void adminUserInterface(Scanner scanner) {
         int n = 0;

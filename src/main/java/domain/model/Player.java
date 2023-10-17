@@ -14,8 +14,9 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
 public class Player {
-
+    /** Поле идентификатора игрока id*/
     private Long id;
 
     /** Поле имени*/
@@ -27,11 +28,11 @@ public class Player {
     /** Поле пароля*/
     private String password;
 
+    /** Поле роли {@link Role}*/
     private Role role;
 
     /** Поле баланса игрока*/
     private BigDecimal money = BigDecimal.valueOf(0);
-
 
 
 }

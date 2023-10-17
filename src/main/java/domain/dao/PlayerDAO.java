@@ -9,10 +9,18 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.*;
 
+/**
+ * Класс доступа к базе данных для объектов типа Player {@link Player}
+ * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
+ * @version 1.0
+ */
 public class PlayerDAO {
 
-    //private Connection connection = null;
-
+    /**
+     * Функция нахождения игрока по его email
+     * @param email - имэйл Игрока
+     * @return Player, если такой игрок сущ-ет, в противном случае возвращается null
+     */
     public Player findByEmail(String email) throws SQLException {
         Connection connection = null;
         Player player = null;
@@ -45,8 +53,12 @@ public class PlayerDAO {
         return player;
     }
 
-
-    //!!!add in select form transactions
+    /**
+     * Функция нахождения игрока по его email и password
+     * @param email - имэйл Игрока
+     * @param password - пароль Игрока
+     * @return Player, если такой игрок сущ-ет, в противном случае возвращается null
+     */
     public Player findByEmailAndPassword(String email, String password) throws SQLException, IOException {
         Connection connection = null;
         Player player = null;
@@ -77,6 +89,13 @@ public class PlayerDAO {
         return player;
     }
 
+    /**
+     * Функция сохранения игрока в таблице players
+     * @param name имя игрока
+     * @param email имэйл игрока
+     * @param password пароль игрока
+     * @return Player, если такой игрок сущ-ет в БД, в противном случае возвращается null
+     */
     public Player savePlayer(String name, String email, String password) throws SQLException, IOException {
         Connection connection = null;
         Player result = null;
@@ -103,6 +122,11 @@ public class PlayerDAO {
        return result;
     }
 
+    /**
+     * Функция обновления баланса игрока в таблице players
+     * @param player {@link Player}
+     * @param sum новый баланс игрока
+     */
     public void updateBalance(Player player, BigDecimal sum) throws SQLException, IOException {
         Connection connection = null;
         try {

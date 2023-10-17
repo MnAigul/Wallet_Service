@@ -6,8 +6,6 @@ import domain.dao.PlayerDAO;
 import domain.model.AuditType;
 import domain.model.EventType;
 import domain.model.Player;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,22 +13,32 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
- * Класс, обрабатывающий действия игрока в его личном кабинете
- *
+ * Класс, обрабатывающий действия игрока по авторизации, регистрации и получения баланса
  * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
  * @version 1.0
  */
-
 public class PlayerService {
 
+    /** Объект PlayerDAO для работы с базой данных {@link PlayerDAO}*/
     private PlayerDAO playerDAO = new PlayerDAO();
+
+    /** Объект AuditDAO для работы с базой данных {@link AuditDAO}*/
     private AuditDAO auditDAO = new AuditDAO();
 
+    /**
+     * Функция, предоставляющая игроку информацию о его текущем балансе и записывающая дейстие просмотра балагса в БД
+     * @param player {@link Player}
+     * @return balance
+     */
     public BigDecimal getBalance(Player player) throws SQLException, IOException {
         auditDAO.save(player.getId(), AuditType.CHECK_BALANCE, EventType.SUCCESS);
         return playerDAO.findByEmail(player.getEmail()).getMoney();
     }
 
+    /**
+     * Функция, осуществляюшая регистрацию пользователя
+     * @param scanner для ввода данных
+     */
     public void registry(Scanner scanner) throws SQLException, IOException {
         System.out.println("Введите своё имя:");
         String name = scanner.next();
@@ -55,6 +63,11 @@ public class PlayerService {
         System.out.println("Регистрация прошла успешно!");
     }
 
+    /**
+     * Функция, осуществляюшая авторизацию пользователя
+     * @param scanner для ввода данных
+     * @return {@link Player}
+     */
     public Player authorize(Scanner scanner) throws SQLException, IOException {
         Player player = null;
         System.out.println("Введите свой email:");
@@ -71,6 +84,10 @@ public class PlayerService {
         return player;
     }
 
+    /**
+     * Функция записывающая в аудит запись выход пользователя
+     * @param {@link Player}
+     */
     public void playerExit(Player player) throws IOException {
         auditDAO.save(player.getId(), AuditType.EXIT, EventType.SUCCESS);
     }

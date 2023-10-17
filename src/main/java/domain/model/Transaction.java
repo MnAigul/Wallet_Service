@@ -21,7 +21,9 @@ public class Transaction {
     /** Идентификатор транзакции*/
     private Long id;
 
+    /** Идентификатор пользователя, совершившего транзакцию*/
     private Long playerId;
+
     /** Поле типа транзакции {@link TransactionType}*/
     private TransactionType type;
 

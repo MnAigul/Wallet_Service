@@ -1,7 +1,5 @@
 package domain.dao;
 
-import domain.model.Player;
-import domain.model.Role;
 import domain.model.Transaction;
 import domain.model.TransactionType;
 import infrastructure.DBUtils;
@@ -11,16 +9,24 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Класс доступа к базе данных для объектов типа Transaction {@link Transaction}
+ * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
+ * @version 1.0
+ */
 public class TransactionDAO {
 
-
-
+    /** Объект соединения с БД*/
     private Connection connection = null;
 
+    /**
+     * Функция сохранения транзакции в таблице transactions
+     * @param transaction - объект транзакции {@link Transaction}
+     * @return true если тразакции с таким id в БД не существует и сохранение в БД выполнено успешно
+     */
     public boolean saveTransaction(Transaction transaction) throws IOException {
         boolean res = false;
         try {
@@ -54,6 +60,11 @@ public class TransactionDAO {
         return res;
     }
 
+    /**
+     * Функция возвращения транзакций определенного игрока
+     * @param player_id  id транзакции
+     * @return лист объектов транзакций игрока
+     */
     public List<Transaction> getAllOperationsOfPlayer(Long player_id) {
         List<Transaction> transactions = new LinkedList<>();
         try {

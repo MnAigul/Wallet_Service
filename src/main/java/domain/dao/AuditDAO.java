@@ -9,11 +9,25 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Класс доступа к базе данных для объектов типа Audit {@link Audit}
+ * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
+ * @version 1.0
+ */
 public class AuditDAO {
 
+    /** Объект соединения с БД*/
     private Connection connection = null;
 
-    public void save(Long player_id, AuditType auditType, EventType eventType) throws IOException {
+    /**
+     * Функция сохранения аудита в таблице audit
+     * @param player_id - id игрока
+     * @param auditType - тип действия(аудита)
+     * @param eventType - тип конечного исхода действия
+     * @return true если опреация INSERT прошла успешно
+     */
+    public boolean save(Long player_id, AuditType auditType, EventType eventType) throws IOException {
+        boolean res = false;
         Audit audit = new Audit(player_id, auditType, eventType);
         try {
             connection = DBUtils.getConnection();
@@ -23,6 +37,7 @@ public class AuditDAO {
             insertDataStatement.setString(2, auditType.name());
             insertDataStatement.setString(3, eventType.name());
             insertDataStatement.executeUpdate();
+            res = true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -33,9 +48,15 @@ public class AuditDAO {
             } catch (SQLException closeException) {
                 System.err.println("Ошибка при закрытии соединения: " + closeException.getMessage());
             }
+            return res;
         }
     }
 
+    /**
+     * Функция нахождения всех действия игрока по его email
+     * @param email - email игрока
+     * @return лист объектов {@link Audit}
+     */
     public List<Audit> findByPlayerEmail(String email) {
         List<Audit> audits = new LinkedList<>();
         try {
@@ -66,6 +87,10 @@ public class AuditDAO {
         return audits;
     }
 
+    /**
+     * Функция нахождения email-ов всех зарегистрированных пользователей
+     * @return List<String> лист email-ов
+     */
     public List<String> findAllPlayersEmails() {
         List<String> emails = new LinkedList<>();
         try {

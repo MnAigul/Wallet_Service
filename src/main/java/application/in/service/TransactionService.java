@@ -4,13 +4,8 @@ package application.in.service;
 import domain.dao.AuditDAO;
 import domain.dao.PlayerDAO;
 import domain.dao.TransactionDAO;
-import domain.model.AuditType;
-import domain.model.EventType;
-import domain.model.Player;
-import domain.model.Transaction;
-import lombok.Getter;
+import domain.model.*;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -22,15 +17,24 @@ import java.util.List;
  * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
  * @version 1.0
  */
-@Getter
-@Setter
 @RequiredArgsConstructor
 public class TransactionService {
 
+    /** Объект AuditDAO для работы с базой данных {@link AuditDAO}*/
     private AuditDAO auditDAO = new AuditDAO();
+
+    /** Объект TransactionDAO для работы с базой данных {@link TransactionDAO}*/
     private TransactionDAO transactionDAO = new TransactionDAO();
+
+    /** Объект PlayerDAO для работы с базой данных {@link PlayerDAO}*/
     private PlayerDAO playerDAO = new PlayerDAO();
 
+    /**
+     * Функция обработки транзакий (дебета/кредита)
+     * @param transaction {@link Transaction}
+     * @param player {@link Player}
+     * @return true, если операция прошла успешно и достаточно средств для операции дебета
+     */
     public boolean debitAndCredit(Transaction transaction, Player player) throws SQLException, IOException {
         if (transaction.getType().toString().equals("DEBIT")) {
             if (player.getMoney().subtract(transaction.getSum()).compareTo(BigDecimal.valueOf(0)) >= 0) {
@@ -67,6 +71,7 @@ public class TransactionService {
 
     /**
      * Функция, предоставляющая игроку информацию о всех его транзакциях
+     * @param player {@link Player}
      */
     public void allOperationsOfPlayer(Player player) {
         List<Transaction> transactions = transactionDAO.getAllOperationsOfPlayer(player.getId());

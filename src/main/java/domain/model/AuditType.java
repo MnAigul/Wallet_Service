@@ -8,14 +8,19 @@ package domain.model;
 public enum AuditType {
     /** Тип регистрации*/
     REGISTRATION,
+
     /** Тип авторизации*/
     AUTHORISATION,
+
     /** Тип выхода из аккаунта */
     EXIT,
+
     /** Тип дебета/снятия средств */
     DEBIT,
+
     /** Тип кредита */
     CREDIT,
+
     /** Тип просмотра баланса */
     CHECK_BALANCE
 }

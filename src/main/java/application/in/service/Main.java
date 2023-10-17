@@ -5,30 +5,39 @@ import domain.model.Transaction;
 import domain.model.TransactionType;
 import infrastructure.DBUtils;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
  * Главный класс, который взаимодействует с пользователем
- *
  * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
  * @version 1.0
  */
 public class Main {
 
+    /** Объект PlayerService для обрабатывания действия игрока {@link PlayerService}*/
     private PlayerService playerService = new PlayerService();
 
+    /** Объект TransactionService для обрабатывания действия по транзакциям {@link TransactionService}*/
     private TransactionService transactionService = new TransactionService();
 
+    /** Объект AuditService для обрабатывания аудита {@link AuditService}*/
     private AuditService auditService = new AuditService();
 
     /**
      * Главная функция
      */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        DBUtils.executeLiquiBase();
+        FileInputStream fis;
+        Properties properties = new Properties();
+        fis = new FileInputStream("src/main/resources/application.properties");
+        properties.load(fis);
+        DBUtils dbUtils = new DBUtils(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
+        dbUtils.executeLiquiBase();
         Scanner scanner = new Scanner(System.in);
         Main main = new Main();
         main.mainFunction(scanner);
@@ -37,6 +46,7 @@ public class Main {
 
     /**
      * Функция, взаимодействующая с пользователем на старте (регистрация, авторизация, вход для админа)
+     * @param scanner для ввода данных
      */
     public void mainFunction(Scanner scanner) throws SQLException, IOException {
         System.out.println("--Привет, это Wallet-Service!--");
@@ -74,6 +84,8 @@ public class Main {
 
     /**
      * Функция, обрабатывающая действия игрока через Scanner
+     * @param scanner для ввода данных
+     * @param player {@link Player}
      */
     public void personalAreaOfPlayer(Player player, Scanner scanner) throws SQLException, IOException {
         int n = -1;
