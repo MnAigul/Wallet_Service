@@ -3,6 +3,7 @@ package domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.math.BigDecimal;
 
@@ -14,13 +15,16 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Transaction {
 
     /** Идентификатор транзакции*/
-    Long id;
+    private Long id;
+
+    private Long playerId;
     /** Поле типа транзакции {@link TransactionType}*/
-    TransactionType type;
+    private TransactionType type;
 
     /** Поле суммы транзакции, на которую была совершена операция*/
-    BigDecimal sum;
+    private BigDecimal sum;
 }

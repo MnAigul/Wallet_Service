@@ -15,45 +15,22 @@ import java.util.*;
 @NoArgsConstructor
 @Data
 public class Player {
+
+    private Long id;
+
     /** Поле имени*/
-    String name;
+    private String name;
+
     /** Поле почты или логина*/
-    String email;
+    private String email;
+
     /** Поле пароля*/
-    String password;
+    private String password;
+
+    private Role role;
+
     /** Поле баланса игрока*/
-    BigDecimal money = BigDecimal.valueOf(0);
-    /** Поле транзакций, проведенных игроком*/
-    Set<Transaction> playerTransactions = new HashSet<>();
-
-    /** Поле журналирования всех действий игрока*/
-    Set<Audit> audit = new LinkedHashSet<>();
-
-    /**
-     * Функция добавления новой транзакции к {@link Player#playerTransactions}
-     */
-    public void addNewTransactionToPlayer(Transaction transaction) {
-        this.playerTransactions.add(transaction);
-    }
-
-    /**
-     * Функция добавления нового лога к {@link Player#audit}
-     */
-    public void addNewActionToAudit(Audit audit) {
-        this.audit.add(audit);
-    }
-
-    /**
-     * Конструктор - создание нового объекта с определенными значениями
-     * @param name - имя
-     * @param email - логин
-     * @param password - пароль
-     */
-    public Player(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+    private BigDecimal money = BigDecimal.valueOf(0);
 
 
 

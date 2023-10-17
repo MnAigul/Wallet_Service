@@ -1,30 +1,31 @@
 package domain.model;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
-/**
- * Класс, описывающий объект журналирования каждого действия
- * @author Aigul Mingazova <aigul.mingazova.02@mail.ru>
- * @version 1.0
- */
 @Getter
 @Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Audit {
+
+    private Long id;
+    private Long playerId;
+    private AuditType auditType;
+    private EventType eventType;
+
     /** Поле времени создания экземпляра объекта*/
-    LocalDateTime time = LocalDateTime.now();
-    /** Поле типа действия игрока {@link ActionType}*/
-    ActionType type;
+    private Time time;
 
-    /**
-     * Конструктор - создание нового объекта с определенными значениями
-     * @param type - тип действия {@link ActionType}
-     */
-    public Audit(ActionType type) {
-        this.type = type;
+    public Audit(Long playerId, AuditType auditType, EventType eventType) {
+        this.playerId = playerId;
+        this.auditType = auditType;
+        this.eventType = eventType;
     }
-
 }
