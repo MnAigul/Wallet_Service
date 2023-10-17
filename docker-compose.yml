@@ -1,0 +1,11 @@
+version: '3'
+services:
+  db_wallet:
+    container_name: db_wallet
+    image: postgres:14.3-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ylab_db
+    ports:
+      - "15432:5432"

@@ -1,0 +1,15 @@
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/Audit.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/application/in/service/Main.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/dao/AuditDAO.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/infrastructure/DBUtils.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/dao/TransactionDAO.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/Transaction.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/application/in/service/AuditService.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/Role.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/application/in/service/PlayerService.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/AuditType.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/Player.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/application/in/service/TransactionService.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/TransactionType.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/dao/PlayerDAO.java
+/Users/macbook/Desktop/my_school21_projects/Y_Lab_project/src/main/java/domain/model/EventType.java
