@@ -10,6 +10,8 @@
 - Mockito
 - AssertJ
 - Lombok
+- TestContainers
+- PostgreSQL
 
 ## Запуск проекта
 
@@ -25,12 +27,22 @@ git clone [URL репозитория]
 git checkout develop
 ```
 
-2. Войдите в директорию 
+3. Запустите docker-compose.yml
+
+
+4. Подключитесь к Базе данных со следующими параметрами:
+```
+Host:localhost
+Port: 15432
+User: root
+Password: root
+Database: ylab_db
+```
+5. Перейдите в директорию
 ```
 cd src/main/java/application/in/service
 ```
-
-3. Запустите Main class
+6. Запустите Main class
 
 4. Готово!
 
