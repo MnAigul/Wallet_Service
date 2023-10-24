@@ -1,4 +1,4 @@
-# Y_Lab_project
+# Wallet-Service
 
 ## Описание проекта
 
