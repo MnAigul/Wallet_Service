@@ -6,6 +6,7 @@
 
 ## Использованные технологии
 - Java SDK 17
+- Docker-compose
 - JUnit 5
 - Mockito
 - AssertJ
